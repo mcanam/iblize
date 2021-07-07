@@ -1,5 +1,5 @@
-import Dom from "../src/utils/dom.js";
-import History from "../src/utils/history.js";
+import Dom from "./utils/dom.js";
+import History from "./utils/history.js";
 
 class Iblize {
     constructor(selector = "", options = {}) {
