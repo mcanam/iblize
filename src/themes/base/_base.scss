@@ -1,0 +1,70 @@
+// !!! DON'T EDIT !!!
+// !!! DON'T EDIT !!!
+// !!! DON'T EDIT !!!
+// !!! DON'T EDIT !!!
+// !!! DON'T EDIT !!!
+
+$font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+$font-size: 14px;
+$line-height: 1.75;
+$color: hsl(200, 20%, 30%);
+
+.iblize {
+    font: #{$font-size}/#{$line-height} $font-family;
+    color: $color;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+
+    & * {
+        font: inherit;
+        box-sizing: border-box;
+    }
+
+    &_linenumber {
+        display: flex;
+        flex-direction: column;
+
+        &_child {
+            text-align: right;
+            width: 100%;
+        }
+    }
+
+    &_content {
+        flex-grow: 1;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+
+    &_textarea,
+    &_pre {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    &_textarea {
+        color: transparent;
+        caret-color: $color;
+        white-space: pre;
+        border: none;
+        outline: none;
+        background-color: transparent;
+        position: relative;
+        z-index: 2;
+        resize: none;
+    }
+
+    &_pre {
+        position: absolute;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+    }
+}

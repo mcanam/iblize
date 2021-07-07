@@ -1,0 +1,15 @@
+body {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.editor_container {
+    width: 90%;
+    height: 300px;
+    box-shadow: 0 5px 10px rgba(55, 84, 170, 0.2);
+}

@@ -1,0 +1,115 @@
+/*!
+ * name : iblize-light
+ * desc : inspired by one dark pro
+ * author : iblize
+ */
+
+$color-base: hsl(200, 20%, 45%);
+$color-green: hsl(123, 45%, 43%);
+$color-red: hsl(350, 63%, 55%);
+$color-blue: hsl(200, 70%, 45%);
+$color-yellow: hsl(36, 79%, 44%);
+$color-purple: hsl(300, 60%, 52%);
+$background-color: hsl(0, 0%, 100%);
+
+.iblize-light {
+    color: $color-base;
+    background-color: $background-color;
+
+    & .iblize {
+        // font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+        // font-size: 14px;
+        // line-height: 1.75;
+        
+        &_linenumber {
+            padding: 10px 15px;
+            &_child { opacity: 0.7; }
+        }
+
+        &_textarea,
+        &_pre {
+            /* textarea and pre must have same padding size */
+            padding: 10px 0;
+        }
+
+        &_textarea {
+            caret-color: $color-blue;
+
+            &::selection {
+                background-color: transparentize($color: $color-blue, $amount: 0.8);
+            }
+        }
+    }
+
+    & .token {
+        &.punctuation,
+        &.attr-equals,
+        &.property {
+            color: $color-base;
+        }
+
+        &.comment,
+        &.prolog,
+        &.doctype,
+        &.cdata,
+        &.namespace {
+            color: $color-base;
+            opacity: 0.5;
+        }
+
+        &.keyword {
+            color: $color-purple;
+        }
+
+        &.tag,
+        &.parameter,
+        &.interpolation,
+        &.selector,
+        &.deleted {
+            color: $color-red;
+        }
+
+        &.function,
+        &.operator,
+        &.entity,
+        &.url,
+        &.regex,
+        &.atrule,
+        &.class-name {
+            color: $color-blue;
+        }
+
+        &.string,
+        &.char,
+        &.inserted,
+        &.builtin,
+        &.attr-value {
+            color: $color-green;
+        }
+
+        &.attr-name,
+        &.number,
+        &.boolean,
+        &.important,
+        &.symbol,
+        &.constant {
+            color: $color-yellow;
+        }
+
+        &.bold {
+            font-weight: bold;
+        }
+
+        &.italic {
+            font-style: italic;
+        }
+
+        &.entity {
+            cursor: help;
+        }
+    }
+
+    .language-css {
+        color: $color-yellow;
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "editor.tabSize": 4,
+    "editor.lineHeight": 30,
+    // "files.exclude": {
+    //     "**/node_modules": true,
+    //     "**/package-lock.json": true,
+    //     "**/.trash": true,
+    // }
+}
