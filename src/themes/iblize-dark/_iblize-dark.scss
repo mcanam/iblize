@@ -22,14 +22,14 @@ $background-color: hsl(230, 25%, 18%);
         // line-height: 1.75;
 
         &_linenumber {
-            padding: 10px 15px;
+            padding: 15px;
             &_child { opacity: 0.5; }
         }
 
         &_textarea,
         &_pre {
             /* textarea and pre must have same padding size */
-            padding: 10px 0;
+            padding: 15px 0;
         }
 
         &_textarea {

@@ -1,9 +1,171 @@
-.iblize{font:14px/1.75 Consolas,Monaco,"Andale Mono","Ubuntu Mono",monospace;color:#3d525c;width:100%;height:100%;display:flex;box-sizing:border-box;position:relative;overflow:hidden}.iblize *{font:inherit;box-sizing:border-box}.iblize_linenumber{display:flex;flex-direction:column}.iblize_linenumber_child{text-align:right;width:100%}.iblize_content{flex-grow:1;height:100%;position:relative;overflow:hidden}.iblize_textarea,.iblize_pre{width:100%;height:100%;padding:0;margin:0}.iblize_textarea{color:transparent;caret-color:#3d525c;white-space:pre;border:none;outline:none;background-color:transparent;position:relative;z-index:2;resize:none}.iblize_pre{position:absolute;top:0;left:0;pointer-events:none}/*!
+.iblize {
+  font: 14px/1.75 Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  color: #3d525c;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+.iblize * {
+  font: inherit;
+  box-sizing: border-box;
+}
+.iblize_linenumber {
+  display: flex;
+  flex-direction: column;
+}
+.iblize_linenumber_child {
+  text-align: right;
+  width: 100%;
+}
+.iblize_content {
+  flex-grow: 1;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.iblize_textarea, .iblize_pre {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+.iblize_textarea {
+  color: transparent;
+  caret-color: #3d525c;
+  white-space: pre;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  position: relative;
+  z-index: 2;
+  resize: none;
+}
+.iblize_pre {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+/*!
  * name : iblize-dark
  * desc : inspired by one dark pro
  * author : iblize
- */.iblize-dark{color:#a3b8c2;background-color:#222639}.iblize-dark .iblize_linenumber{padding:10px 15px}.iblize-dark .iblize_linenumber_child{opacity:.5}.iblize-dark .iblize_textarea,.iblize-dark .iblize_pre{padding:10px 0}.iblize-dark .iblize_textarea{caret-color:#52b1e0}.iblize-dark .iblize_textarea::selection{background-color:rgba(82,177,224,.2)}.iblize-dark .token.punctuation,.iblize-dark .token.attr-equals,.iblize-dark .token.property{color:#a3b8c2}.iblize-dark .token.comment,.iblize-dark .token.prolog,.iblize-dark .token.doctype,.iblize-dark .token.cdata,.iblize-dark .token.namespace{color:#a3b8c2;opacity:.5}.iblize-dark .token.keyword{color:#c6c}.iblize-dark .token.tag,.iblize-dark .token.parameter,.iblize-dark .token.interpolation,.iblize-dark .token.selector,.iblize-dark .token.deleted{color:#e05269}.iblize-dark .token.function,.iblize-dark .token.operator,.iblize-dark .token.entity,.iblize-dark .token.url,.iblize-dark .token.regex,.iblize-dark .token.atrule,.iblize-dark .token.class-name{color:#52b1e0}.iblize-dark .token.string,.iblize-dark .token.char,.iblize-dark .token.inserted,.iblize-dark .token.builtin,.iblize-dark .token.attr-value{color:#7ab87d}.iblize-dark .token.attr-name,.iblize-dark .token.number,.iblize-dark .token.boolean,.iblize-dark .token.important,.iblize-dark .token.symbol,.iblize-dark .token.constant{color:#e0a752}.iblize-dark .token.bold{font-weight:bold}.iblize-dark .token.italic{font-style:italic}.iblize-dark .token.entity{cursor:help}.iblize-dark .language-css{color:#e0a752}/*!
+ */
+.iblize-dark {
+  color: #a3b8c2;
+  background-color: #222639;
+}
+.iblize-dark .iblize_linenumber {
+  padding: 15px;
+}
+.iblize-dark .iblize_linenumber_child {
+  opacity: 0.5;
+}
+.iblize-dark .iblize_textarea, .iblize-dark .iblize_pre {
+  /* textarea and pre must have same padding size */
+  padding: 15px 0;
+}
+.iblize-dark .iblize_textarea {
+  caret-color: #52b1e0;
+}
+.iblize-dark .iblize_textarea::selection {
+  background-color: rgba(82, 177, 224, 0.2);
+}
+.iblize-dark .token.punctuation, .iblize-dark .token.attr-equals, .iblize-dark .token.property {
+  color: #a3b8c2;
+}
+.iblize-dark .token.comment, .iblize-dark .token.prolog, .iblize-dark .token.doctype, .iblize-dark .token.cdata, .iblize-dark .token.namespace {
+  color: #a3b8c2;
+  opacity: 0.5;
+}
+.iblize-dark .token.keyword {
+  color: #cc66cc;
+}
+.iblize-dark .token.tag, .iblize-dark .token.parameter, .iblize-dark .token.interpolation, .iblize-dark .token.selector, .iblize-dark .token.deleted {
+  color: #e05269;
+}
+.iblize-dark .token.function, .iblize-dark .token.operator, .iblize-dark .token.entity, .iblize-dark .token.url, .iblize-dark .token.regex, .iblize-dark .token.atrule, .iblize-dark .token.class-name {
+  color: #52b1e0;
+}
+.iblize-dark .token.string, .iblize-dark .token.char, .iblize-dark .token.inserted, .iblize-dark .token.builtin, .iblize-dark .token.attr-value {
+  color: #7ab87d;
+}
+.iblize-dark .token.attr-name, .iblize-dark .token.number, .iblize-dark .token.boolean, .iblize-dark .token.important, .iblize-dark .token.symbol, .iblize-dark .token.constant {
+  color: #e0a752;
+}
+.iblize-dark .token.bold {
+  font-weight: bold;
+}
+.iblize-dark .token.italic {
+  font-style: italic;
+}
+.iblize-dark .token.entity {
+  cursor: help;
+}
+.iblize-dark .language-css {
+  color: #e0a752;
+}
+
+/*!
  * name : iblize-light
  * desc : inspired by one dark pro
  * author : iblize
- */.iblize-light{color:#5c7a8a;background-color:#fff}.iblize-light .iblize_linenumber{padding:10px 15px}.iblize-light .iblize_linenumber_child{opacity:.7}.iblize-light .iblize_textarea,.iblize-light .iblize_pre{padding:10px 0}.iblize-light .iblize_textarea{caret-color:#228ec3}.iblize-light .iblize_textarea::selection{background-color:rgba(34,142,195,.2)}.iblize-light .token.punctuation,.iblize-light .token.attr-equals,.iblize-light .token.property{color:#5c7a8a}.iblize-light .token.comment,.iblize-light .token.prolog,.iblize-light .token.doctype,.iblize-light .token.cdata,.iblize-light .token.namespace{color:#5c7a8a;opacity:.5}.iblize-light .token.keyword{color:#ce3bce}.iblize-light .token.tag,.iblize-light .token.parameter,.iblize-light .token.interpolation,.iblize-light .token.selector,.iblize-light .token.deleted{color:#d5445c}.iblize-light .token.function,.iblize-light .token.operator,.iblize-light .token.entity,.iblize-light .token.url,.iblize-light .token.regex,.iblize-light .token.atrule,.iblize-light .token.class-name{color:#228ec3}.iblize-light .token.string,.iblize-light .token.char,.iblize-light .token.inserted,.iblize-light .token.builtin,.iblize-light .token.attr-value{color:#3c9f41}.iblize-light .token.attr-name,.iblize-light .token.number,.iblize-light .token.boolean,.iblize-light .token.important,.iblize-light .token.symbol,.iblize-light .token.constant{color:#c98218}.iblize-light .token.bold{font-weight:bold}.iblize-light .token.italic{font-style:italic}.iblize-light .token.entity{cursor:help}.iblize-light .language-css{color:#c98218}
+ */
+.iblize-light {
+  color: #5c7a8a;
+  background-color: white;
+}
+.iblize-light .iblize_linenumber {
+  padding: 15px;
+}
+.iblize-light .iblize_linenumber_child {
+  opacity: 0.7;
+}
+.iblize-light .iblize_textarea, .iblize-light .iblize_pre {
+  /* textarea and pre must have same padding size */
+  padding: 15px 0;
+}
+.iblize-light .iblize_textarea {
+  caret-color: #228ec3;
+}
+.iblize-light .iblize_textarea::selection {
+  background-color: rgba(34, 142, 195, 0.2);
+}
+.iblize-light .token.punctuation, .iblize-light .token.attr-equals, .iblize-light .token.property {
+  color: #5c7a8a;
+}
+.iblize-light .token.comment, .iblize-light .token.prolog, .iblize-light .token.doctype, .iblize-light .token.cdata, .iblize-light .token.namespace {
+  color: #5c7a8a;
+  opacity: 0.5;
+}
+.iblize-light .token.keyword {
+  color: #ce3bce;
+}
+.iblize-light .token.tag, .iblize-light .token.parameter, .iblize-light .token.interpolation, .iblize-light .token.selector, .iblize-light .token.deleted {
+  color: #d5445c;
+}
+.iblize-light .token.function, .iblize-light .token.operator, .iblize-light .token.entity, .iblize-light .token.url, .iblize-light .token.regex, .iblize-light .token.atrule, .iblize-light .token.class-name {
+  color: #228ec3;
+}
+.iblize-light .token.string, .iblize-light .token.char, .iblize-light .token.inserted, .iblize-light .token.builtin, .iblize-light .token.attr-value {
+  color: #3c9f41;
+}
+.iblize-light .token.attr-name, .iblize-light .token.number, .iblize-light .token.boolean, .iblize-light .token.important, .iblize-light .token.symbol, .iblize-light .token.constant {
+  color: #c98218;
+}
+.iblize-light .token.bold {
+  font-weight: bold;
+}
+.iblize-light .token.italic {
+  font-style: italic;
+}
+.iblize-light .token.entity {
+  cursor: help;
+}
+.iblize-light .language-css {
+  color: #c98218;
+}
