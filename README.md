@@ -9,6 +9,8 @@ simple javascript code editor library
 -   support undo and redo function
 -   support mobile browser
 
+[Live Demo Here](https://mcanam.github.io/Iblize/)
+
 ## Instalation
 
 install via NPM :
