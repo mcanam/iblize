@@ -1,8 +1,9 @@
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
+import styles from "rollup-plugin-styles";
+import inject from "@rollup/plugin-inject";
 import { terser } from "rollup-plugin-terser";
 import { babel } from "@rollup/plugin-babel";
-import inject from "@rollup/plugin-inject";
 import pkg from "./package.json";
 
 const banner = `
@@ -14,22 +15,37 @@ const banner = `
  */
 `;
 
-export default {
-    input: "src/iblize.js",
-    output: {
-        file: "dist/iblize.js",
-        format: "umd",
-        name: "Iblize",
-        banner: banner
-    },
-    plugins: [
-        resolve(),
-        commonjs(),
+let fileName = "iblize.dev.js";
+
+let pluginList = [
+    resolve(),
+    commonjs(),
+    styles({
+        mode: ["inject", { prepend: true }],
+        minimize: true
+    })
+];
+
+if (process.env.mode == "prod") {
+    fileName = "iblize.js";
+    pluginList = [
+        ...pluginList,
         inject({ Prism: "prismjs" }),
         babel({
             babelHelpers: "bundled",
             presets: ["@babel/preset-env"]
         }),
         terser()
-    ]
+    ];
+}
+
+export default {
+    input: "src/iblize.js",
+    output: {
+        file: "dist/" + fileName,
+        format: "umd",
+        name: "Iblize",
+        banner: banner
+    },
+    plugins: pluginList
 };
