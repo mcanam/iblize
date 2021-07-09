@@ -1,4 +1,4 @@
-.iblize{font:14px/1.75 Consolas,Monaco,"Andale Mono","Ubuntu Mono",monospace;color:#3d525c;width:100%;height:100%;display:flex;box-sizing:border-box;position:relative;overflow:hidden}.iblize *{font:inherit;box-sizing:border-box}.iblize_linenumber{display:flex;flex-direction:column}.iblize_linenumber_child{text-align:right;width:100%}.iblize_content{flex-grow:1;height:100%;position:relative;overflow:hidden}.iblize_textarea,.iblize_pre{width:100%;height:100%;padding:0;margin:0}.iblize_textarea{color:transparent;caret-color:#3d525c;white-space:pre;border:none;outline:none;background-color:transparent;position:relative;z-index:2;resize:none}.iblize_pre{position:absolute;top:0;left:0;pointer-events:none}/*!
+/*!
  * name : iblize-dark
  * desc : inspired by one dark pro
  * author : iblize
