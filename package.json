@@ -4,17 +4,19 @@
     "description": "simple javascript code editor library",
     "main": "dist/iblize.js",
     "scripts": {
-        "start-dev": "live-server --open=dev",
-        "build-themes": "sass themes/index.scss:dist/iblize.css --style=compressed --no-source-map",
-        "watch-themes": "sass themes/index.scss:dist/iblize.css --watch --no-source-map",
-        "build-lib": "rollup -c",
-        "build": "npm run build-themes & npm run build-lib"
+        "themes:build": "sass themes/index.scss:dist/iblize.css --style=compressed --no-source-map",
+        "themes:watch": "sass themes/index.scss:dist/iblize.dev.css --watch --no-source-map",
+        "lib:build": "mode=prod rollup -c",
+        "lib:watch": "rollup -c -w",
+        "build": "npm run themes:build & npm run lib:build"
     },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/mcanam/iblize.git"
     },
-    "keywords": ["code-editor"],
+    "keywords": [
+        "code-editor"
+    ],
     "author": "mcanam",
     "license": "MIT",
     "bugs": {
@@ -31,10 +33,10 @@
         "@rollup/plugin-commonjs": "^19.0.0",
         "@rollup/plugin-inject": "^4.0.2",
         "@rollup/plugin-node-resolve": "^13.0.0",
-        "live-server": "^1.2.1",
-        "node-sass": "^6.0.1",
         "rollup": "^2.52.6",
-        "rollup-plugin-terser": "^7.0.2"
+        "rollup-plugin-styles": "^3.14.1",
+        "rollup-plugin-terser": "^7.0.2",
+        "sass": "^1.35.2"
     },
     "browserslist": [
         "defaults",
