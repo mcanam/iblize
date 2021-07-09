@@ -20,16 +20,18 @@ $background-color: hsl(0, 0%, 100%);
         // font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
         // font-size: 14px;
         // line-height: 1.75;
-        
-        &_linenumber {
-            padding: 15px;
-            &_child { opacity: 0.7; }
-        }
 
+        &_linenumber,
         &_textarea,
         &_pre {
-            /* textarea and pre must have same padding size */
-            padding: 15px 0;
+            /* linenumber, textarea and pre must have same padding size */
+            padding: 10px 15px;
+        }
+        
+        &_linenumber {
+            border-right: 1px solid transparentize($color: $color-base, $amount: 0.8);
+
+            &_child { opacity: 0.7; }
         }
 
         &_textarea {
