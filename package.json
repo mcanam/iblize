@@ -5,8 +5,8 @@
     "main": "dist/iblize.js",
     "scripts": {
         "start-dev": "live-server --open=dev",
-        "build-themes": "sass src/themes/index.scss:dist/iblize.css --style=compressed --no-source-map",
-        "watch-themes": "sass src/themes/index.scss:dist/iblize.css --watch --no-source-map",
+        "build-themes": "sass themes/index.scss:dist/iblize.css --style=compressed --no-source-map",
+        "watch-themes": "sass themes/index.scss:dist/iblize.css --watch --no-source-map",
         "build-lib": "rollup -c",
         "build": "npm run build-themes & npm run build-lib"
     },
