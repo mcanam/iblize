@@ -14,7 +14,7 @@
 install via NPM :
 
 ```bash
-
+npm install iblize --save
 ```
 
 OR
@@ -22,8 +22,8 @@ OR
 directly with CDN :
 
 ```html
-<link rel="stylesheet" href="" />
-<script src=""></script>
+<link rel="stylesheet" href="https://unpkg.com/iblize/dist/iblize.css" />
+<script src="https://unpkg.com/iblize/dist/iblize.js"></script>
 ```
 
 ## Usage
@@ -62,6 +62,37 @@ const iblize = new Iblize("#editor", {
 -   **`readOnly: Boolean`** enable readonly mode. default is **false**
 -   **`tabSize: Number`** the number of spaces. default is **2**
 -   **`theme: String`** theme name. default is **"iblize-dark"** [theme list](./src/themes/README.md)
+
+## Styling
+
+basic styling
+
+```css
+/* EXAMPLE */
+
+#editor {
+    font-family: "Fira Code", monospace;
+    width: 100%;
+    height: 300px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+```
+
+advance styling
+
+```css
+/* EXAMPLE */
+
+#editor > .iblize.iblize_dark .iblize_linenumber {
+    border-right: 1px solid red; 
+}
+
+✨ be creative ✨
+```
+
+or you can make your own theme
+
+tutorial ( in progress )
 
 ## API Reference
 
@@ -136,8 +167,6 @@ Iblize using [PrismJs](prismjs.com) as a core syntax highlighter
 ## Browser Compatibility
 
 tested on latest version of major browser
-
-<img src="https://memegenerator.net/img/instances/47410105/no-patrick-internet-explorer-is-not-supported.jpg" width="300px" />
 
 ## License
 
