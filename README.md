@@ -1,6 +1,4 @@
-# IBLIZE ( Alpha Release )
-
-simple javascript code editor library
+![](.assets/preview.png)
 
 ## Features
 
@@ -24,7 +22,7 @@ OR
 directly with CDN :
 
 ```html
-<link rel="stylesheet" href="">
+<link rel="stylesheet" href="" />
 <script src=""></script>
 ```
 
@@ -67,7 +65,7 @@ const iblize = new Iblize("#editor", {
 
 ## API Reference
 
-### `getValue() => String`
+#### `getValue() => String`
 
 return editor value
 
@@ -77,11 +75,12 @@ return editor value
 const editorValue = iblize.getValue();
 ```
 
-### `setValue( value: String)`
+#### `setValue( value: String, record: Boolean)`
 
 set editor value
 
 -   value parameter is a string to be displayed in the editor
+-   record parameter is `optional` default is **true** it will record the value to history.
 
 ```js
 /* EXAMPLE */
@@ -91,7 +90,7 @@ const code = "console.log('hello world')";
 iblize.setValue(code);
 ```
 
-### `getOptions() => Object`
+#### `getOptions() => Object`
 
 return current editor options
 
@@ -101,7 +100,7 @@ return current editor options
 const options = iblize.getOptions();
 ```
 
-### `setOptions( options: Object )`
+#### `setOptions( options: Object )`
 
 update editor options
 
@@ -117,7 +116,7 @@ iblize.setOptions({
 });
 ```
 
-### `onUpdate( callback: Function )`
+#### `onUpdate( callback: Function )`
 
 -   no description
 
