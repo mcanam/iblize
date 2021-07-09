@@ -1,6 +1,6 @@
 {
     "name": "iblize",
-    "version": "1.0.0-alpha",
+    "version": "1.0.0",
     "description": "simple javascript code editor library",
     "main": "dist/iblize.js",
     "scripts": {
