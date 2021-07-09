@@ -192,10 +192,8 @@ class Iblize {
         // record current changes before tab is inserted
         // to get the right cursor position when undo
         this._recordHistory();
-
         this._insertText(currCursor, " ".repeat(tabSize));
         this._setCursor(currCursor + tabSize);
-        
         this._recordHistory();
     }
 
@@ -227,20 +225,16 @@ class Iblize {
 
             // record current changes
             this._recordHistory();
-
             this._insertText(currCursor, string);
             this._setCursor(currCursor + indent + tabSize + 1);
-
             this._recordHistory();
 
         } else {
 
             // record current changes
             this._recordHistory();
-
             this._insertText(currCursor, "\n" + " ".repeat(indent));
             this._setCursor(currCursor + indent + 1);
-
             this._recordHistory();
 
         }
@@ -284,7 +278,7 @@ class Iblize {
 
                 // closing char
                 if (charBefore == char.open) {
-                    this._insertText(currCursor, char.close, false);
+                    this._insertText(currCursor, char.close);
                     this._setCursor(currCursor);
                     this._recordHistory();
                 }
@@ -356,7 +350,7 @@ class Iblize {
         const valueBefore = editorValue.substring(0, pos);
         const valueAfter = editorValue.substring(pos);
 
-        this.setValue(valueBefore + value + valueAfter);
+        this.setValue(valueBefore + value + valueAfter, false);
     }
 
     _removeText(posStart, posEnd) {
@@ -364,7 +358,7 @@ class Iblize {
         const valueBefore = editorValue.substring(0, posStart);
         const valueAfter = editorValue.substring(posEnd);
 
-        this.setValue(valueBefore + valueAfter);
+        this.setValue(valueBefore + valueAfter, false);
     }
 
     _recordHistory(meta = {}) {
@@ -395,9 +389,11 @@ class Iblize {
         return this.elementTextarea.value;
     }
 
-    setValue(value) {
+    setValue(value, record = true) {
         this.elementTextarea.value = value;
         this._updateEditor();
+
+        if (record) this._recordHistory();
     }
 
     getOptions() {
@@ -420,9 +416,7 @@ class Iblize {
             ? "inherit"
             : "none";
 
-        if (option.readOnly) {
-            this.elementTextarea.setAttribute("readonly", "");
-        }
+        this.elementTextarea.readOnly = option.readOnly;
 
         this._updateEditor();
     }
