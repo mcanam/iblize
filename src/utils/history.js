@@ -42,7 +42,7 @@ class History {
 
     restore() {
         const { cursor, value } = this.stack[this.level];
-        this.editor.setValue(value);
+        this.editor.setValue(value, false);
         this.editor._setCursor(cursor);
     }
 }
