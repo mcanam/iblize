@@ -1,3 +1,5 @@
+![preview](.assets/preview.png)
+
 # IBLIZE
 
 simple javascript code editor library 
