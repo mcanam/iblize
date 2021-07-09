@@ -1,21 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iblize Demo</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mcanam/iblize@master/dist/iblize.css">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
 
-    <div id="editor"></div>
+    <head>
+        <title>Iblize Editor</title>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="author" content="mcanam" />
+        <meta name="description" content="simple javascript code editor library">
+        <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mcanam/iblize/dist/iblize.css" />
+        <link rel="stylesheet" href="style.css" />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-0SSDK11MF4"></script>
+    </head>
 
-    <script src="https://cdn.jsdelivr.net/gh/mcanam/iblize@master/dist/iblize.js"></script>
-    <script src="script.js"></script>
+    <body>
+        <!-- header -->
+        <header class="header">
+            <img class="header_logo" src="./assets/images/logo.svg" alt="logo">
+            <h1 class="header_title">IBLIZE</h1>
+            <a href="https://github.com/mcanam/iblize" class="header_github"><img src="assets/images/github.svg" alt="github"></a>
+        </header>
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0SSDK11MF4"></script>
-    <script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-0SSDK11MF4');</script>
-</body>
+        <!-- content -->
+        <main class="content">
+
+            <!-- section intro -->
+            <div class="content_section intro">
+                <h2 class="content_heading">
+                    Simple Javascript <br> 
+                    <span>Code Editor Library 🤘</span>
+                </h2>
+                <ul class="content_features">
+                    <li>Auto closing bracket and quote</li>
+                    <li>Auto add new line indent</li>
+                    <li>Support undo and redo function</li>
+                    <li>Support mobile browsers</li>
+                </ul>
+                <a href="https://github.com/mcanam/iblize" class="content_cta">Geting Started</a>
+            </div>
+
+            <!-- section demo -->
+            <div class="content_section demo">
+                <div class="editor">
+                    <div class="editor_header">
+                        <img src="assets/images/dots.svg" alt="dots">
+                        <span>iblize demo</span>
+                        <div class="menu">
+                            <div class="menu_trigger"><img src="assets/images/settings.svg" alt="settings"></div>
+                            <div class="menu_content"></div>
+                        </div>
+                    </div>
+                    <div class="editor_body" id="my_editor"></div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">made with 🤘 by mcanam</footer>
+
+        <script src="https://cdn.jsdelivr.net/gh/mcanam/iblize/dist/iblize.js"></script>
+        <script src="script.js"></script>
+        <script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-0SSDK11MF4")</script>
+    </body>
+
 </html>
