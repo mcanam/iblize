@@ -1,11 +1,11 @@
 import Iblize from "../src/iblize.js";
 
-const iblize = new Iblize("#myEditor", {
+window.iblize = new Iblize("#myEditor", {
     language: "javascript",
     lineNumber: true,
     readOnly: false,
     tabSize: 2,
-    theme: "iblize-light"
+    theme: "iblize-dark"
 });
 
 iblize.setValue(
