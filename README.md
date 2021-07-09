@@ -1,4 +1,6 @@
-![](.assets/preview.png)
+# IBLIZE
+
+simple javascript code editor library 
 
 ## Features
 
@@ -17,9 +19,7 @@ install via NPM :
 npm install iblize --save
 ```
 
-OR
-
-directly with CDN :
+or directly with CDN :
 
 ```html
 <link rel="stylesheet" href="https://unpkg.com/iblize/dist/iblize.css" />
@@ -37,132 +37,109 @@ create editor container
 create initialitation
 
 ```js
-// import library
+// import Iblize
 import Iblize from "iblize";
-
-// import style
+// import Iblize themes
 import "iblize/dist/iblize.css";
 
-// create initialitation
 const iblize = new Iblize("#editor", {
     // options
-    language: "javascript",
-    lineNumber: true,
-    readOnly: false,
-    tabSize: 2,
-    theme: "iblize-dark"
 });
 ```
 
 ## Options
 
--   **`language: String`** name of language to highlight. default is **"javascript"** [
-    list of supported languages](https://prismjs.com/#supported-languages)
--   **`lineNumber: Boolean`** controls the display of line numbers. default is **true**
--   **`readOnly: Boolean`** enable readonly mode. default is **false**
--   **`tabSize: Number`** the number of spaces. default is **2**
--   **`theme: String`** theme name. default is **"iblize-dark"** [theme list](./src/themes/README.md)
+- #### `language: String`
 
-## Styling
+  name of language to highlight. default is **"js"** 
+  <br>
+  [list of supported languages](https://prismjs.com/#supported-languages)
 
-basic styling
+- #### `lineNumber: Boolean`
+  
+  controls the display of line numbers. default is **true**
 
-```css
-/* EXAMPLE */
+- #### `readOnly: Boolean` 
 
-#editor {
-    font-family: "Fira Code", monospace;
-    width: 100%;
-    height: 300px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-```
+  enable readonly mode. default is **false**
 
-advance styling
+- #### `tabSize: Number` 
 
-```css
-/* EXAMPLE */
+  the number of spaces. default is **2** 
 
-#editor > .iblize.iblize_dark .iblize_linenumber {
-    border-right: 1px solid red; 
-}
+- #### `theme: String` 
 
-✨ be creative ✨
-```
-
-or you can make your own theme
-
-tutorial ( in progress )
+  theme name. default is **"iblize-dark"** 
+  [list of themes](./src/themes/README.md)
 
 ## API Reference
 
-#### `getValue() => String`
+- #### `getValue() => String`
 
-return editor value
+  return editor value.
 
-```js
-/* EXAMPLE */
+  ```js
+  /* example */
 
-const editorValue = iblize.getValue();
-```
+  const editorValue = iblize.getValue();
+  ```
 
-#### `setValue( value: String, record: Boolean)`
+- #### `setValue( value: String, record: Boolean)`
 
-set editor value
+  set editor value.
 
--   value parameter is a string to be displayed in the editor
--   record parameter is `optional` default is **true** it will record the value to history.
+  *value* parameter is a string to be displayed in the editor
+  <br>
+  *record* parameter is `optional` default is **true** it will record the value to history.
 
-```js
-/* EXAMPLE */
+  ```js
+  /* example */
 
-const code = "console.log('hello world')";
+  const code = "console.log('hello world')";
 
-iblize.setValue(code);
-```
+  iblize.setValue(code);
+  ```
 
-#### `getOptions() => Object`
+- #### `getOptions() => Object`
 
-return current editor options
+  return current editor options.
 
-```js
-/* EXAMPLE */
+  ```js
+  /* example */
 
-const options = iblize.getOptions();
-```
+  const options = iblize.getOptions();
+  ```
 
-#### `setOptions( options: Object )`
+- #### `setOptions( options: Object )`
 
-update editor options
+  update editor options.
 
--   no description
+  ```js
+  /* example */
 
-```js
-/* EXAMPLE */
+  iblize.setOptions({
+      language: "html",
+      lineNumber: false
+      // etc
+  });
+  ```
 
-iblize.setOptions({
-    language: "html",
-    lineNumber: false
-    // etc
-});
-```
+- #### `onUpdate( callback: Function )`
 
-#### `onUpdate( callback: Function )`
+  no description.
 
--   no description
+  ```js
+  /* example */
 
-```js
-/* EXAMPLE */
-
-iblize.onUpdate((value) => {
-    // do something
-    console.log(value);
-});
-```
+  iblize.onUpdate((value) => {
+      // do something
+      console.log(value);
+  });
+  ```
 
 ## Dependency
 
-Iblize using [PrismJs](prismjs.com) as a core syntax highlighter
+[PrismJs](prismjs.com) - iblize core syntax highlighter
 
 ## Browser Compatibility
 
