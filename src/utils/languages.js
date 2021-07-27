@@ -1,4 +1,5 @@
-// this file generated from script/extract.js you can run it with nodejs
+// this file generated from script/extract.js 
+// you can run it with nodejs then format with prettier
 
 const languages = {
     require: {
