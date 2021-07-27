@@ -1,5 +1,6 @@
 import "./iblize.scss";
 
+import Prism from "prismjs";
 import Dom from "./utils/dom";
 import History from "./utils/history";
 
@@ -36,35 +37,35 @@ class Iblize {
     }
 
     _createEditorElement() {
-        this.elementWrapper = Dom.create(this.elementRoot, {
-            type: "div",
-            attr: { class: "iblize" }
+        this.elementWrapper = Dom.create("div", {
+            parent: this.elementRoot,
+            className: "iblize"
         });
 
-        this.elementLinenumber = Dom.create(this.elementWrapper, {
-            type: "div",
-            attr: { class: "iblize_linenumber" }
+        this.elementLinenumber = Dom.create("div", {
+            parent: this.elementWrapper,
+            className: "iblize_linenumber"
         });
 
-        this.elementContent = Dom.create(this.elementWrapper, {
-            type: "div",
-            attr: { class: "iblize_content" }
+        this.elementContent = Dom.create("div", {
+            parent: this.elementWrapper,
+            className: "iblize_content"
         });
 
-        this.elementPre = Dom.create(this.elementContent, {
-            type: "pre",
-            attr: { class: "iblize_pre" }
+        this.elementPre = Dom.create("pre", {
+            parent: this.elementContent,
+            className: "iblize_pre"
         });
 
-        this.elementCode = Dom.create(this.elementPre, {
-            type: "code",
-            attr: { class: "iblize_code" }
+        this.elementCode = Dom.create("code", {
+            parent: this.elementPre,
+            className: "iblize_code"
         });
 
-        this.elementTextarea = Dom.create(this.elementContent, {
-            type: "textarea",
+        this.elementTextarea = Dom.create("textarea", {
+            parent: this.elementContent,
+            className: "iblize_textarea",
             attr: {
-                class: "iblize_textarea",
                 spellcheck: "false",
                 autocorrect: "off",
                 autocomplete: "off",
