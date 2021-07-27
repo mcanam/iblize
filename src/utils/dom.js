@@ -1,35 +1,64 @@
 class Dom {
-    static create(parent, { type, attr, style }) {
-        const element = document.createElement(type);
-
-        if (attr != undefined) {
-            this.setAttr(element, attr);
-        }
-
-        if (style != undefined) {
-            this.addStyle(element, style);
-        }
-        
-        parent.appendChild(element);
+    static select(selector) {
+        const element = document.querySelector(selector);
         return element;
     }
 
-    static setAttr(target, attrs) {
-        for (const [key, value] of Object.entries(attrs)) {
-            target.setAttribute(key, value);
-        }
+    static selectAll(selector) {
+        const elements = document.querySelectorAll(selector);
+        return elements;
     }
 
-    static addStyle(target, styles) {
-        for (const [key, value] of Object.entries(styles)) {
-            target.style[key] = value;
-        }
-    }
+    static create(tagName, props) {
+        const element = document.createElement(tagName);
 
-    static addEvent(target, events) {
-        events.forEach(({ name, callback }) => {
-            target.addEventListener(name, callback, false);
+        Object.entries(props).forEach(([prop, value]) => {
+            if (prop == "attr") {
+                return this.setAttr(element, value);
+            }
+
+            if (prop == "style") {
+                return this.addStyle(element, value);
+            }
+
+            if (prop == "event") {
+                return this.addEvent(element, value);
+            }
+
+            if (prop == "parent") {
+                return value.appendChild(element);
+            }
+
+            element[prop] = value;
         });
+
+        return element;
+    }
+
+    static setAttr(target, attrMap) {
+        Object.entries(attrMap).forEach(([key, value]) => {
+            target.setAttribute(key, value);
+        });
+
+        return this;
+    }
+
+    static addStyle(target, styleMap) {
+        Object.entries(styleMap).forEach(([key, value]) => {
+            target.style[key] = value;
+        });
+
+        return this;
+    }
+
+    static addEvent(target, eventMap) {
+        if (!Array.isArray(eventMap)) eventMap = [eventMap];
+
+        eventMap.forEach(({ name, callback }) => {
+            target.addEventListener(name, callback);
+        });
+
+        return this;
     }
 }
 
