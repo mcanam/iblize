@@ -1,51 +1,51 @@
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import styles from "rollup-plugin-styles";
-import inject from "@rollup/plugin-inject";
 import { terser } from "rollup-plugin-terser";
 import { babel } from "@rollup/plugin-babel";
 import pkg from "./package.json";
 
-const banner = `
+const header = `
 /*!
  * ${pkg.name} v${pkg.version}
  * ${pkg.description}
- * ${pkg.homepage}
+ * ${pkg.homepage.replace(/#readme/, "")}
  * ${pkg.license} license by ${pkg.author}
  */
 `;
 
-let fileName = "iblize.dev.js";
-
-let pluginList = [
-    resolve(),
-    commonjs(),
-    styles({
-        mode: ["inject", { prepend: true }],
-        minimize: true
-    })
-];
-
-if (process.env.mode == "prod") {
-    fileName = "iblize.js";
-    pluginList = [
-        ...pluginList,
-        inject({ Prism: "prismjs" }),
-        babel({
-            babelHelpers: "bundled",
-            presets: ["@babel/preset-env"]
-        }),
-        terser()
-    ];
-}
-
-export default {
+let config = {
     input: "src/iblize.js",
     output: {
-        file: "dist/" + fileName,
+        file: "dist/iblize.js",
         format: "umd",
         name: "Iblize",
-        banner: banner
+        banner: header,
+        sourcemap: false
     },
-    plugins: pluginList
+    plugins: [
+        resolve(),
+        commonjs(),
+        styles({
+            mode: ["inject", { 
+                prepend: true, 
+                attributes: { id: "iblize_style" }
+            }],
+            minimize: true
+        })
+    ]
 };
+
+if (process.env.mode == "prod") {
+    config.output.sourcemap = true;
+    config.plugins.push(
+        babel({
+            babelHelpers: "bundled",
+            presets: ["@babel/preset-env"],
+            // plugins: [["prismjs", {}]]
+        }),
+        terser()
+    );
+}
+
+export default config;
