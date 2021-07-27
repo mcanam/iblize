@@ -181,8 +181,12 @@ class Iblize {
     highlightSyntax() { 
         const editorValue = this.getValue();
 
-        const language = this.options.language;
-        const grammar = Prism.languages[language];
+        let language = this.options.language;
+        let grammar = Prism.languages[language];
+
+        if (grammar == undefined) {
+            grammar = Prism.languages["plaintext"];
+        }
 
         const highlightedValue = Prism.highlight(editorValue, grammar, language);
         this.elementCode.innerHTML = highlightedValue;
