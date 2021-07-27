@@ -1,5 +1,5 @@
 /*!
- * iblize v1.0.1
+ * iblize v2.0.0
  * Simple Javascript Code Editor Library
  * https://github.com/mcanam/iblize
  * MIT license by mcanam
