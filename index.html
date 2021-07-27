@@ -7,14 +7,25 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="dist/iblize.css">
+        <style>
+            #editor { width: 100%; height: 400px }
+        </style>
     </head>
 
     <body>
-        <div id="editor"></div>
+        <div id="editor"><!--console.log("Hello World");--></div>
 
         <script src="dist/iblize.js"></script>
         <script>
-            const iblize = new Iblize("#editor", {});
+            const iblize = new Iblize("#editor", {
+                language: "js",
+                languagesPath: "dist/languages/",
+                lineNumber: true,
+                readOnly: false,
+                tabSize: 2,
+                theme: "iblize-dark",
+                themesPath: "dist/themes/"
+            });
         </script>
     </body>
 
