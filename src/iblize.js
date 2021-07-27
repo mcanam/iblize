@@ -28,18 +28,18 @@ class Iblize {
         };
 
         // prepare the editor
-        this._setupEditor();
+        this.setupEditor();
         this.setOptions(options);
     }
 
     // Setup Editor
 
-    _setupEditor() {
-        this._createEditorElement();
-        this._attachTextareaEvent();
+    setupEditor() {
+        this.createEditorElement();
+        this.attachTextareaEvent();
     }
 
-    _createEditorElement() {
+    createEditorElement() {
         this.elementWrapper = Dom.create("div", {
             parent: this.elementRoot,
             className: "iblize"
@@ -77,26 +77,26 @@ class Iblize {
         });
     }
 
-    _attachTextareaEvent() {
+    attachTextareaEvent() {
         Dom.addEvent(this.elementTextarea, [
             {
                 name: "input",
-                callback: this._handleInput.bind(this)
+                callback: this.handleInput.bind(this)
             },
             {
                 name: "keydown",
-                callback: this._handleKeydown.bind(this)
+                callback: this.handleKeydown.bind(this)
             },
             {
                 name: "scroll",
-                callback: this._handleScroll.bind(this)
+                callback: this.handleScroll.bind(this)
             }
         ]);
     }
 
     // Textarea Event Handler
 
-    _handleScroll() {
+    handleScroll() {
         const {
             scrollWidth: width,
             scrollHeight: height,
@@ -116,13 +116,13 @@ class Iblize {
         });
     }
 
-    _handleInput() {
+    handleInput() {
         if (this.typingTimeout != undefined) {
             clearTimeout(this.typingTimeout);
         }
       
         this.typingTimeout = setTimeout(() => {
-            this._recordHistory();
+            this.recordHistory();
         }, 150);
 
         if (this.onUpdateCallback != undefined) {
@@ -130,19 +130,19 @@ class Iblize {
             this.onUpdateCallback(this.getValue());
         }
 
-        this._closeCharacter();
-        this._updateEditor();
+        this.closeCharacter();
+        this.updateEditor();
     }
 
-    _handleKeydown(event) {
+    handleKeydown(event) {
         if (event.keyCode == 13) {
             event.preventDefault();
-            this._addLineIndent();
+            this.addLineIndent();
         }
 
         if (event.keyCode == 9) {
             event.preventDefault();
-            this._insertTab();
+            this.insertTab();
         }
 
         if (event.ctrlKey && event.key == "z") {
@@ -158,12 +158,12 @@ class Iblize {
 
     // Editor Internal Method
 
-    _updateEditor() {
-        this._linenumberCounter();
-        this._syntaxHighlighter();
+    updateEditor() {
+        this.countLinenumber();
+        this.highlightSyntax();
     }
 
-    _linenumberCounter() {
+    countLinenumber() {
         const totalLines = this.getValue().split("\n").length;
         const childLength = this.elementLinenumber.childElementCount;
 
@@ -178,10 +178,7 @@ class Iblize {
         }
     }
 
-    _syntaxHighlighter() { 
-        // NOTE: need optimization. only update the highlight on the currently active line.
-        // i dont know why chrome very slow on manjaro linux
-
+    highlightSyntax() { 
         const editorValue = this.getValue();
 
         const language = this.options.language;
@@ -191,24 +188,24 @@ class Iblize {
         this.elementCode.innerHTML = highlightedValue;
     }
 
-    _insertTab() {
-        const currCursor = this._getCursor();
+    insertTab() {
+        const currCursor = this.getCursor();
         const tabSize = this.options.tabSize;
 
         // record current changes before tab is inserted
         // to get the right cursor position when undo
-        this._recordHistory();
-        this._insertText(currCursor, " ".repeat(tabSize));
-        this._setCursor(currCursor + tabSize);
-        this._recordHistory();
+        this.recordHistory();
+        this.insertText(currCursor, " ".repeat(tabSize));
+        this.setCursor(currCursor + tabSize);
+        this.recordHistory();
     }
 
-    _addLineIndent() {
-        const currCursor = this._getCursor();
+    addLineIndent() {
+        const currCursor = this.getCursor();
         const editorValue = this.getValue();
 
         // get indent length from current active line
-        const currLineValue = this._getLineValue(this._getActiveLine());
+        const currLineValue = this.getLineValue(this.getActiveLine());
         const currLineIndent = currLineValue.match(/^\s{1,}/);
 
         // get the characters from before and after cursor
@@ -230,24 +227,24 @@ class Iblize {
                            "\n" + " ".repeat(indent);
 
             // record current changes
-            this._recordHistory();
-            this._insertText(currCursor, string);
-            this._setCursor(currCursor + indent + tabSize + 1);
-            this._recordHistory();
+            this.recordHistory();
+            this.insertText(currCursor, string);
+            this.setCursor(currCursor + indent + tabSize + 1);
+            this.recordHistory();
 
         } else {
 
             // record current changes
-            this._recordHistory();
-            this._insertText(currCursor, "\n" + " ".repeat(indent));
-            this._setCursor(currCursor + indent + 1);
-            this._recordHistory();
+            this.recordHistory();
+            this.insertText(currCursor, "\n" + " ".repeat(indent));
+            this.setCursor(currCursor + indent + 1);
+            this.recordHistory();
 
         }
     }
 
-    _closeCharacter() {
-        const currCursor = this._getCursor();
+    closeCharacter() {
+        const currCursor = this.getCursor();
         const editorValue = this.getValue();
 
         // get the characters from before and after cursor
@@ -276,17 +273,17 @@ class Iblize {
             charList.forEach((char) => {
                 // skip char
                 if (charBefore == char.close && charAfter == char.close) {
-                    this._removeText(currCursor, currCursor + 1);
-                    this._setCursor(currCursor);
-                    this._recordHistory();
+                    this.removeText(currCursor, currCursor + 1);
+                    this.setCursor(currCursor);
+                    this.recordHistory();
                     return;
                 }
 
                 // closing char
                 if (charBefore == char.open) {
-                    this._insertText(currCursor, char.close);
-                    this._setCursor(currCursor);
-                    this._recordHistory();
+                    this.insertText(currCursor, char.close);
+                    this.setCursor(currCursor);
+                    this.recordHistory();
                 }
             });
 
@@ -299,9 +296,9 @@ class Iblize {
             charList.forEach((char) => {
                 // delete char
                 if (previousChar == char.open && charAfter == char.close) {
-                    this._removeText(currCursor, currCursor + 1);
-                    this._setCursor(currCursor);
-                    this._recordHistory();
+                    this.removeText(currCursor, currCursor + 1);
+                    this.setCursor(currCursor);
+                    this.recordHistory();
                 }
             });
 
@@ -310,7 +307,7 @@ class Iblize {
         this.valueLengthReminder = editorValue.length;
     }
 
-    _optionsValidator(options) {
+    optionsValidator(options) {
         Object.entries(options).forEach((option) => {
             const [key, value] = option;
 
@@ -330,28 +327,28 @@ class Iblize {
 
     // Editor Private API
 
-    _getActiveLine() {
-        const currCursor = this._getCursor();
+    getActiveLine() {
+        const currCursor = this.getCursor();
         const editorValue = this.getValue().substring(0, currCursor);
         const activeLine = editorValue.split("\n").length;
 
         return activeLine;
     }
 
-    _getLineValue(line) {
+    getLineValue(line) {
         const editorValue = this.getValue();
         return editorValue.split("\n")[line - 1];
     }
 
-    _getCursor() {
+    getCursor() {
         return this.elementTextarea.selectionStart;
     }
 
-    _setCursor(pos) {
+    setCursor(pos) {
         this.elementTextarea.setSelectionRange(pos, pos);
     }
 
-    _insertText(pos, value) {
+    insertText(pos, value) {
         const editorValue = this.getValue();
         const valueBefore = editorValue.substring(0, pos);
         const valueAfter = editorValue.substring(pos);
@@ -359,7 +356,7 @@ class Iblize {
         this.setValue(valueBefore + value + valueAfter, false);
     }
 
-    _removeText(posStart, posEnd) {
+    removeText(posStart, posEnd) {
         const editorValue = this.getValue();
         const valueBefore = editorValue.substring(0, posStart);
         const valueAfter = editorValue.substring(posEnd);
@@ -367,9 +364,9 @@ class Iblize {
         this.setValue(valueBefore + valueAfter, false);
     }
 
-    _recordHistory(meta = {}) {
+    recordHistory(meta = {}) {
         if (meta.cursor == undefined) {
-            meta.cursor = this._getCursor();
+            meta.cursor = this.getCursor();
         }
 
         if (meta.value == undefined) {
@@ -397,9 +394,9 @@ class Iblize {
 
     setValue(value, record = true) {
         this.elementTextarea.value = value;
-        this._updateEditor();
+        this.updateEditor();
 
-        if (record) this._recordHistory();
+        if (record) this.recordHistory();
     }
 
     getOptions() {
@@ -408,7 +405,7 @@ class Iblize {
 
     setOptions(options) {
         // run options validator
-        this._optionsValidator(options);
+        this.optionsValidator(options);
 
         // update elements
         const option = this.options;
@@ -424,7 +421,7 @@ class Iblize {
 
         this.elementTextarea.readOnly = option.readOnly;
 
-        this._updateEditor();
+        this.updateEditor();
     }
 }
 
