@@ -30,78 +30,78 @@
         }
     }
 
-    &.token {
-        .comment,
-        .prolog,
-        .doctype,
-        .cdata {
+    & .token {
+        &.comment,
+        &.prolog,
+        &.doctype,
+        &.cdata {
             color: #8292a2;
         }
 
-        .punctuation {
+        &.punctuation {
             color: #f8f8f2;
         }
 
-        .namespace {
+        &.namespace {
             opacity: 0.7;
         }
 
-        .property,
-        .tag,
-        .constant,
-        .symbol,
-        .deleted {
+        &.property,
+        &.tag,
+        &.constant,
+        &.symbol,
+        &.deleted {
             color: #f92672;
         }
 
-        .boolean,
-        .number {
+        &.boolean,
+        &.number {
             color: #ae81ff;
         }
 
-        .selector,
-        .attr-name,
-        .string,
-        .char,
-        .builtin,
-        .inserted {
+        &.selector,
+        &.attr-name,
+        &.string,
+        &.char,
+        &.builtin,
+        &.inserted {
             color: #a6e22e;
         }
 
-        .operator,
-        .entity,
-        .url,
-        .language-css .string,
-        .style .string,
-        .variable {
+        &.operator,
+        &.entity,
+        &.url,
+        .language-css &.string,
+        .style &.string,
+        &.variable {
             color: #f8f8f2;
         }
 
-        .atrule,
-        .attr-value,
-        .function,
-        .class-name {
+        &.atrule,
+        &.attr-value,
+        &.function,
+        &.class-name {
             color: #e6db74;
         }
 
-        .keyword {
+        &.keyword {
             color: #66d9ef;
         }
 
-        .regex,
-        .important {
+        &.regex,
+        &.important {
             color: #fd971f;
         }
 
-        .important,
-        .bold {
+        &.important,
+        &.bold {
             font-weight: bold;
         }
-        .italic {
+        &.italic {
             font-style: italic;
         }
 
-        .entity {
+        &.entity {
             cursor: help;
         }
     }
