@@ -27,7 +27,7 @@ directly with CDN :
 <script src="https://unpkg.com/iblize/dist/iblize.js"></script>
 ```
 
-or download manually from [here]()
+or download manually from [here](https://github.com/mcanam/iblize/archive/refs/tags/v2.0.0.zip)
 
 ## Usage
 
