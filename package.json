@@ -1,11 +1,11 @@
 {
     "name": "iblize",
     "version": "1.0.1",
-    "description": "simple javascript code editor library",
+    "description": "Simple Javascript Code Editor Library",
     "main": "dist/iblize.js",
     "scripts": {
-        "themes:build": "sass themes/index.scss:dist/iblize.css --style=compressed --no-source-map",
-        "themes:watch": "sass themes/index.scss:dist/iblize.dev.css --watch --no-source-map",
+        "themes:build": "sass themes:dist/themes --style=compressed",
+        "themes:watch": "sass themes:dist/themes --watch --no-source-map",
         "lib:build": "mode=prod rollup -c",
         "lib:watch": "rollup -c -w",
         "build": "npm run themes:build & npm run lib:build"
