@@ -5,14 +5,17 @@ import Dom from "./utils/dom";
 import History from "./utils/history";
 
 class Iblize {
-    constructor(selector = "", options = {}) {
+    constructor(container = "", options = {}) {
         this.history = new History(this);
 
-        try {
-            this.elementRoot = document.querySelector(selector);
-            if (this.elementRoot == null) throw Error();
-        } catch {
-            throw Error("Iblize : can't find your editor container!");
+        if (container instanceof HTMLElement) {
+            this.elementRoot = container;
+        } else {
+            this.elementRoot = Dom.select(container);
+        }
+
+        if (!this.elementRoot) {
+            throw Error("Iblize can't find the editor containers");
         }
 
         // default options
