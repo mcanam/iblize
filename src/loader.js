@@ -60,7 +60,7 @@ class Loader {
         if (this.themes.includes(name)) {
             // if theme is exist, just update path/url.
             const link = Dom.select(`link[theme="${name}"]`);
-            return link.href = path;
+            return link.href = path + name + ".css";
         }
 
         const ref = Dom.select("#iblize_style");
