@@ -1,57 +1,85 @@
-![preview](.assets/preview.png)
+<p align="center">
+  <img src="https://img.shields.io/npm/v/iblize?color=%237171F3&label=latest&style=for-the-badge" />
+</p>
 
-# IBLIZE
+<br>
 
-Simple Javascript Code Editor Library 
+<p align="center">
+  <img src=".assets/preview.png" />
+</p>
 
-## Features
+<h3 align="center">IBLIZE - Simple Javascript Code Editor Library</h3>
 
--   auto closing bracket and quote
--   auto add new line indent
--   support undo and redo function
--   support mobile browser
+<p align="center">
+  <a href="https://mcanam.github.io/iblize/"><strong>View Demo »</strong></a>
+  <br> <br>
+  <a href="https://github.com/mcanam/iblize/issues">Report Bug</a>
+  <span> - </span>
+  <a href="https://github.com/mcanam/iblize/issues">Request Feature</a>
+</p>
 
-[Live Demo Here](https://mcanam.github.io/iblize/)
+<br> <br>
 
-## Instalation
+## Get Started
 
-install via NPM :
+#### 1. First include Iblize on your project
 
-```bash
-npm install iblize --save
-```
-
-directly with CDN :
+you can directly use cdn
 
 ```html
 <script src="https://unpkg.com/iblize/dist/iblize.js"></script>
 ```
 
-or download manually from [here]()
+or install from npm
 
-## Usage
+``` bash
+npm install iblize --save
+```
 
-create editor container
+or download manually from [here](https://github.com/mcanam/iblize/archive/refs/tags/v2.0.1.zip)
+
+#### 2. Create editor container
+
+because iblize works in web browsers, so iblize needs a div container to hold all elements.
 
 ```html
 <div id="editor"></div>
 ```
 
-set editor width and height
+then set the container width and height. you can also use inline style.
 
 ``` css
 #editor { width: 100%; height: 400px }
 ```
 
-create initialitation
+#### 3. Create initialization
+
+the first argument can be a string selector or an dom element
 
 ```js
+// use selector
 const iblize = new Iblize("#editor", {
+    // options
+});
+
+// use dom element
+const iblize = new Iblize(document.querySelector("#editor"), {
     // options
 });
 ```
 
-set editor value
+the second argument is options. [see all options](#options)
+
+```js
+const iblize = new Iblize("#editor", {
+    language: "html",
+    // etc
+});
+```
+
+#### 4. Set editor default value (optional)
+
+you can set editor value programmatically with javascript
 
 ``` js
 iblize.setValue("console.log('Hello World')");
@@ -67,72 +95,121 @@ or directly from html (value must be wrapped with comment tag)
 </div>
 ```
 
-listening change
+#### 5. Listening change
+
+listen when the editor value changes
 
 ``` js
-iblize.onChange((value) => {
+iblize.onUpdate((value) => {
   // do anything with value
 });
 ```
 
+done 👌. if you find bug or if you have a cool idea please [tell me](https://github.com/mcanam/iblize/issues)  
+
+[explore editor API](#api-reference)
+
 ## Options
 
-### `language: String`
+### `language`
+  
+- Type: `String`  
+  
+- Default: `"js"`
 
-name of language to highlight. default is **"javascript"** 
-[list of supported languages](https://prismjs.com/#supported-languages)
+the name of language to highlight [list of supported languages](https://prismjs.com/#supported-languages)
 
-> By default Iblize will load the language modules from cdn
-> but if you want to load locally, you can set `languagesPath` option bellow.
+> Iblize has some built-in language modules. markup ( html, xml ), css, javascript / js, and clike. By default if you use a language other than the built-in one, Iblize will automatically load the language modules from cdn. But dont worry, if you want to work offline or load the modules locally, you can set `languagesPath` option bellow.
 
-### `languagesPath: String`
+### `languagesPath`
+  
+- Type: `String`  
+  
+- Default: `""`
 
 path to **languages** folder. You can find the folder in the **dist** folder.
 
-### `lineNumber: Boolean`
+### `lineNumber`
   
-controls the display of line numbers. default is **true**
+- Type: `Boolean`  
+  
+- Default: `true`
+  
+controls the display of line numbers
 
-### `readOnly: Boolean` 
+### `readOnly` 
+  
+- Type: `Boolean`  
+  
+- Default: `false`
 
-enable readonly mode. default is **false**
+controls the readonly mode
 
-### `tabSize: Number` 
+### `tabSize` 
+  
+- Type: `Number`  
+  
+- Default: `2`
 
-the number of spaces. default is **2** 
+the number of spaces
 
-### `theme: String` 
+### `theme` 
+  
+- Type: `String`  
+  
+- Default: `"iblize-dark"`
 
-theme name. default is **"iblize-dark"** 
-[list of themes](./src/themes/README.md)
+the name of theme [themes list](./src/themes/README.md)
 
 > Same with language, by default Iblize will load the themes from cdn.
 
-### `themesPath: String` 
+### `themesPath` 
+  
+- Type: `String`  
+  
+- Default: `""`
 
 path to **themes** folder. You can find the folder in the **dist** folder.
 
 ## API Reference
 
-### `getValue([from: Number, to: Number]) => String`
+### `getValue([from, to])`
 
-return editor value.
+- Parameter ( optional ):
+    
+  - from:
+    - Type: `Number`
+    - Desc: the start position 
+    
+  - to:
+    - Type: `Number`
+    - Desc: the end position 
+     
+- Return: `String`
 
-*from* and *to* parameter is **optional** it's just like a substring.
+get current editor value.
 
 ```js
 /* example */
 
-const editorValue = iblize.getValue();
-const editorSubValue = iblize.getValue(0, 10);
+const value = iblize.getValue();
+const subValue = iblize.getValue(0, 20);
 ```
 
-### `setValue( value: String[, recordHistory: Boolean])`
+### `setValue(value[, recordHistory])`
 
-set editor value.
+- Parameter:
+    
+  - value:  
+    - Type: `String`
+    - Desc: text to be displayed in the editor 
+    
+  - recordHistory ( optional ):  
+    - Type: `Boolead`
+    - Default: `true`
+    - Desc: record the value to history 
 
-___value___ parameter is a string to be displayed in the editor  
-___recordHistory___ parameter is `optional` default is **true** it will record the value to history.
+set editor value
 
 ```js
 /* example */
@@ -142,9 +219,11 @@ const code = "console.log('hello world')";
 iblize.setValue(code);
 ```
 
-### `getOptions() => Object`
-
-return current editor options.
+### `getOptions()`
+  
+- Return: `Object`
+  
+get current editor options.
 
 ```js
 /* example */
@@ -152,8 +231,15 @@ return current editor options.
 const options = iblize.getOptions();
   ```
 
-### `setOptions( options: Object )`
+### `setOptions(options)`
 
+- Parameter:
+  
+  - options:
+    
+    - Type: `Object`
+    - Desc: editor options [see all options](#options)
+    
 update editor options.
 
 ```js
@@ -166,9 +252,14 @@ iblize.setOptions({
 });
 ```
 
-### `onUpdate( callback: Function )`
+### `onUpdate(callback)`
 
-no description.
+- Parameter:
+  
+  - callback:
+    
+    - Type: `Function`
+    - Desc: -
 
 ```js
 /* example */
@@ -178,17 +269,35 @@ iblize.onUpdate((value) => {
 });
 ```
 
-### `getSelection() => Object`
+### `getSelection()`
+  
+- Return: `Object`
 
-returns { start, end, dir }
+get editor selected text. it will return object containing start, end, and dir properties.
 
 ```js
 /* example */
 
-const selection = iblize.getSelection();
+const selection = iblize.getSelection(); // { start, end, dir }
 ```
 
-### `setSelection(start: Number, end: Number[, dir: String])`
+### `setSelection(start, end[, dir])`
+
+- Parameter:
+    
+  - start:  
+    - Type: `Number`
+    - Desc: index of the first selected character
+    
+  - end:  
+    - Type: `Number`
+    - Default: `true`
+    - Desc: index of the last selected character
+
+  - dir ( optional ):  
+    - Type: `String`
+    - Default: `none`
+    - Desc: a string indicating the selection direction
 
 set selection
 
@@ -198,9 +307,11 @@ set selection
 iblize.setSelection(0, 10);
 ```
 
-### `getCursor() => Number`
+### `getCursor()`
 
-returns current cursor position
+- Return: `Number`
+
+get current cursor position
 
 ```js
 /* example */
@@ -208,8 +319,15 @@ returns current cursor position
 const cursor = iblize.getCursor();
 ```
 
-### `setCursor(pos: Number)`
-
+### `setCursor(pos)`
+  
+- Parameter:
+  
+  - pos:
+    
+    - Type: `Number`
+    - Desc: -
+  
 set cursor position
 
 ```js
@@ -218,7 +336,9 @@ set cursor position
 iblize.setCursor(20);
 ```
 
-### `getActiveLine() => Number`
+### `getActiveLine()`
+
+- Return: `Number`
 
 return current active line
 
@@ -228,9 +348,11 @@ return current active line
 const activeLine = iblize.getActiveLine();
 ```
 
-### `getTotalLine() => Number`
-
-get total lines
+### `getTotalLine()`
+  
+- Return: `Number`
+  
+return editor total lines
 
 ```js
 /* example */
@@ -238,7 +360,16 @@ get total lines
 const totalLines = iblize.getTotalLine();
 ```
 
-### `getLineValue(line: Number) => String`
+### `getLineValue(line)`
+  
+- Parameter:
+  
+  - line:
+    
+    - Type: `Number`
+    - Desc: the target of line
+    
+- Return: `String`
 
 get value from specific line
 
@@ -250,7 +381,7 @@ const lineValue = iblize.getLineValue(5);
 
 ### `insertTab()`
 
-no description.
+insert tabs programmatically
 
 ```js
 /* example */
@@ -258,41 +389,91 @@ no description.
 iblize.inserTab();
 ```
 
-### `insertText(from: Number, text: String [, options: Object])`
+### `insertText(from, text[, options])`
+  
+- Parameter:
+    
+  - from:  
+    - Type: `Number`
+    - Desc: index of the start position to insert text
+    
+  - text:  
+    - Type: `String`
+    - Desc: text to be inserted.
 
-no description.
+  - options ( optional ):  
+    - Type: `Object`
+    - Properties: 
+      
+      - recordHistory: 
 
-___from___ parameter is start position to insert text.  
-___text___ paramter is the text to be inserted.  
-___options___ paramter is `optional` containing :
-- recordHistory: **"before"** | **"after"** | **"both"** | **"none"**
-- moveCursor: cursor position after text is inserted
+          - Type: `String`
+          - Default: `after`
+          - Possible Values: `before` | `after` | `both` | `none`
+          - Desc: -
+
+      - moveCursor: 
+
+          - Type: `Number`
+          - Desc: cursor position after text is inserted
+
+insert text from specific pos
 
 ```js
 /* example */
 
 iblize.inserText(5, "what");
+
+iblize.inserText(5, "what", {
+  moveCursor: 5,
+  recordHistory: "both"
+});
 ```
 
 ### `removeText(from: Number, to: Number [, options: Object])`
+  
+- Parameter:
+    
+  - from:  
+    - Type: `Number`
+    - Desc: index of the start position to insert text
+    
+  - to:  
+    - Type: `Number`
+    - Desc: index of the end position to remove text
 
-no description.
+  - options ( optional ):  
+    - Type: `Object`
+    - Properties: 
+      
+      - recordHistory: 
 
-___from___ parameter is start position to remove text.  
-___to___ parameter is end position to remove text.  
-___options___ paramter is `optional` containing :
-- recordHistory: **"before"** | **"after"** | **"both"** | **"none"**
-- moveCursor: cursor position after text is removed
+          - Type: `String`
+          - Default: `after`
+          - Possible Values: `before` | `after` | `both` | `none`
+          - Desc: -
+
+      - moveCursor: 
+
+          - Type: `Number`
+          - Desc: cursor position after text is removed
+
+remove text from specific pos
 
 ```js
 /* example */
 
 iblize.removeText(5, 6);
+
+iblize.removeText(5, 6, {
+  moveCursor: 5,
+  recordHistory: "both"
+});
 ```
 
 ### `undo()`
 
-no description.
+undo changes programmatically
 
 ```js
 /* example */
@@ -302,7 +483,7 @@ iblize.undo();
 
 ### `redo()`
 
-no description.
+redo changes programmatically
 
 ```js
 /* example */
