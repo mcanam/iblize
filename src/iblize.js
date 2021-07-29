@@ -420,6 +420,7 @@ class Iblize {
 
         if (options.lineNumber != undefined) {
             this.elementLinenumber.style.display = this.options.lineNumber ? "" : "none";
+            this.countLinenumber();
         }
     }
 
