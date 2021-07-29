@@ -30,7 +30,11 @@ you can directly use cdn
 <script src="https://unpkg.com/iblize/dist/iblize.js"></script>
 ```
 
+<<<<<<< HEAD
 or install from npm
+=======
+or download manually from [here](https://github.com/mcanam/iblize/archive/refs/tags/v2.0.0.zip)
+>>>>>>> 8c8886a364d0fdf82d2e9a560a522bc195a92405
 
 ``` bash
 npm install iblize --save
@@ -159,7 +163,12 @@ the number of spaces
   
 - Default: `"iblize-dark"`
 
+<<<<<<< HEAD
 the name of theme [themes list](./src/themes/README.md)
+=======
+theme name. default is **"iblize-dark"** 
+[list of themes](./themes/README.md)
+>>>>>>> 8c8886a364d0fdf82d2e9a560a522bc195a92405
 
 > Same with language, by default Iblize will load the themes from cdn.
 
