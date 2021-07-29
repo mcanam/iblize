@@ -159,7 +159,7 @@ the number of spaces
   
 - Default: `"iblize-dark"`
 
-the name of theme [themes list](./src/themes/README.md)
+the name of theme [themes list](themes/README.md)
 
 > Same with language, by default Iblize will load the themes from cdn.
 
