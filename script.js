@@ -41,4 +41,14 @@ function startDemo() {
     menuReadOnly.addEventListener("change", () => {
         iblize.setOptions({ readOnly: menuReadOnly.checked });
     });
+    
+    const shareBtn = document.querySelector("#share-btn");
+    shareBtn.addEventListener("click", async () => {
+        if (navigator.share == undefined) return;
+        await navigator.share({
+            title: "IBLIZE",
+            text: "Iblize - Simple Javascript Code Editor Library",
+            url: "https://github.com/mcanam/iblize"
+        });
+    });
 }

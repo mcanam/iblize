@@ -48,6 +48,11 @@ a {
     margin-right: auto;
 }
 
+.header-share {
+    margin-left: 20px;
+    cursor: pointer;
+}
+
 /* content */
 
 .content {
