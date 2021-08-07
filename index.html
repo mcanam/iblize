@@ -3,66 +3,107 @@
 
     <head>
         <title>Iblize Editor</title>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="mcanam" />
         <meta name="description" content="simple javascript code editor library">
-        <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mcanam/iblize/dist/iblize.css" />
-        <link rel="stylesheet" href="style.css" />
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-0SSDK11MF4"></script>
+        <link rel="icon" href="favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="style.css">
     </head>
 
     <body>
         <!-- header -->
         <header class="header">
-            <img class="header_logo" src="./assets/images/logo.svg" alt="logo">
-            <h1 class="header_title">IBLIZE</h1>
-            <a href="https://github.com/mcanam/iblize" class="header_github"><img src="assets/images/github.svg" alt="github"></a>
-        </header>
+            <svg class="header-logo" width="99" height="109" viewBox="0 0 99 109" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0)"><path d="M21.166 0L84.0358 41.4261L62.8698 73.5484L21.166 0Z" fill="#7171F4"/><path d="M73.8467 111.141L10.9769 69.7146L32.1429 37.5923L73.8467 111.141Z" fill="#7171F4"/></g><defs><clipPath id="clip0"><rect width="99" height="109" fill="white"/></clipPath></defs></svg>
+            <h1 class="header-title">IBLIZE</h1>
+            <a href="https://github.com/mcanam/iblize" class="header-github"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#3d535c" class="bi bi-github" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
+        </header> <!-- end header -->
 
         <!-- content -->
         <main class="content">
-
-            <!-- section intro -->
-            <div class="content_section intro">
-                <h2 class="content_heading">
+            <!-- content intro -->
+            <div class="content-section intro">
+                <h2 class="content-heading">
                     Simple Javascript <br> 
                     <span>Code Editor Library 🤘</span>
                 </h2>
-                <ul class="content_features">
+                <ul class="content-features">
                     <li>Auto closing bracket and quote</li>
                     <li>Auto add new line indent</li>
                     <li>Support undo and redo function</li>
                     <li>Support mobile browsers</li>
                 </ul>
-                <a href="https://github.com/mcanam/iblize" class="content_cta">Geting Started</a>
-            </div>
+                <a href="https://github.com/mcanam/iblize" class="content-cta">Geting Started</a>
+            </div> <!-- end content intro -->
 
-            <!-- section demo -->
-            <div class="content_section demo">
+            <!-- content demo -->
+            <div class="content-section demo">
+                <!-- editor -->
                 <div class="editor">
-                    <div class="editor_header">
-                        <img src="assets/images/dots.svg" alt="dots">
-                        <span>iblize demo</span>
-                        <div class="menu">
-                            <div class="menu_trigger"><img src="assets/images/settings.svg" alt="settings"></div>
-                            <div class="menu_content"></div>
-                        </div>
-                    </div>
-                    <div class="editor_body" id="my_editor"></div>
-                </div>
-            </div>
-        </main>
+                    <!-- editor head -->
+                    <div class="editor-head">
+                        <svg class="editor-head-dots" width="100" height="24" viewBox="0 0 100 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#F69999"/><circle cx="50" cy="12" r="12" fill="#F5A578"/><circle cx="88" cy="12" r="12" fill="#61DAA0"/></svg>
+                        <span class="editor-head-title">iblize demo</span>
+                        <!-- dropdown -->
+                        <div class="dropdown" id="setting-menu">
+                            <!-- dropdown head -->
+                            <div class="dropdown-head">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3d535c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                            </div> <!-- end dropdown head -->
+                            <!-- dropdown body -->
+                            <div class="dropdown-body">
+                                <!-- language option -->
+                                <div class="dropdown-item">
+                                    <span class="dropdown-item-title">language</span>
+                                    <div class="select" id="menu-language">
+                                        <div class="select-head"></div>
+                                        <div class="select-body"></div>
+                                    </div>
+                                </div> <!-- end language option -->                     
+                                <!-- linenumber option -->
+                                <div class="dropdown-item">
+                                    <span class="dropdown-item-title">linenumber</span>
+                                    <input class="switch" id="menu-linenumber" type="checkbox">
+                                </div> <!-- end linenumber option -->
+                                <!-- read only option -->
+                                <div class="dropdown-item">
+                                    <span class="dropdown-item-title">read only</span>
+                                    <input class="switch" id="menu-readonly" type="checkbox">
+                                </div> <!-- end read only option -->
+                                <!-- tabsize option -->
+                                <div class="dropdown-item">
+                                    <span class="dropdown-item-title">tab size</span>
+                                    <div class="select" id="menu-tabsize">
+                                        <div class="select-head"></div>
+                                        <div class="select-body"></div>
+                                    </div>
+                                </div> <!-- end tabsize option -->               
+                                <!-- theme option -->
+                                <div class="dropdown-item">
+                                    <span class="dropdown-item-title">theme</span>
+                                    <div class="select" id="menu-theme">
+                                        <div class="select-head"></div>
+                                        <div class="select-body"></div>
+                                    </div>
+                                </div> <!-- end theme option -->
+                            </div> <!-- end dropdown body -->
+                        </div> <!-- end dropdown -->
+                    </div> <!-- end editor head -->   
+                    <!-- editor body -->
+                    <div class="editor-body">
+                        <div id="iblize"></div>
+                    </div> <!-- end editor body -->
+                </div> <!-- end editor -->
+            </div> <!-- end content demo -->
+        </main> <!-- end content -->
 
+        <!-- footer -->
         <footer class="footer">made with 🤘 by mcanam</footer>
-
-        <script src="https://cdn.jsdelivr.net/gh/mcanam/iblize/dist/iblize.js"></script>
+        
+        <script src="helper.js"></script>
         <script src="script.js"></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-0SSDK11MF4"></script>
         <script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-0SSDK11MF4")</script>
     </body>
 
