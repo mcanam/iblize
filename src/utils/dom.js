@@ -1,65 +1,74 @@
-class Dom {
-    static select(selector) {
-        const element = document.querySelector(selector);
-        return element;
+const dom = {
+    select: function (selector) {
+          return document.querySelector(selector);
+    },
+
+    selectAll: function (selector) {
+          return document.querySelectorAll(selector);
+    },
+
+    create: function (name, props) {
+          const element = document.createElement(name),
+                propEntries = Object.entries(props),
+                propsLength = propEntries.length;
+
+          if (propsLength == 0) return element;
+
+          propEntries.forEach(([key, value]) => {
+                if (key == "parent") {
+                      return value.appendChild(element);
+                }
+
+                if (key == "attr") {
+                      return this.setAttr(element, value);
+                }
+
+                if (key == "event") {
+                      return this.addEvent(element, value);
+                }
+
+                if (key == "style") {
+                      return this.addStyle(element, value);
+                }
+
+                element[key] = value;
+          });
+
+          return element;
+    },
+
+    setAttr: function(target, attrMap) {
+          const attrEntries = Object.entries(attrMap);
+
+          attrEntries.forEach(([key, value]) => {
+                target.setAttribute(key, value);
+          });
+
+          return this;
+    },
+
+    addEvent: function (target, eventMap) {
+          const isArray = Array.isArray(eventMap);
+
+          // if not array wrap it into array
+          let eventArr = isArray ? eventMap : [eventMap];
+
+          eventArr.forEach(({ name, callback }) => {
+                target.addEventListener(name, callback, false);
+          });
+
+          return this;
+    },
+
+    addStyle: function(target, styleMap) {
+          const styleEntries = Object.entries(styleMap);
+
+          styleEntries.forEach(([key, value]) => {
+                target.style[key] = value;
+          });
+
+          return this;
     }
+};
 
-    static selectAll(selector) {
-        const elements = document.querySelectorAll(selector);
-        return elements;
-    }
-
-    static create(tagName, props) {
-        const element = document.createElement(tagName);
-
-        Object.entries(props).forEach(([prop, value]) => {
-            if (prop == "attr") {
-                return this.setAttr(element, value);
-            }
-
-            if (prop == "style") {
-                return this.addStyle(element, value);
-            }
-
-            if (prop == "event") {
-                return this.addEvent(element, value);
-            }
-
-            if (prop == "parent") {
-                return value.appendChild(element);
-            }
-
-            element[prop] = value;
-        });
-
-        return element;
-    }
-
-    static setAttr(target, attrMap) {
-        Object.entries(attrMap).forEach(([key, value]) => {
-            target.setAttribute(key, value);
-        });
-
-        return this;
-    }
-
-    static addStyle(target, styleMap) {
-        Object.entries(styleMap).forEach(([key, value]) => {
-            target.style[key] = value;
-        });
-
-        return this;
-    }
-
-    static addEvent(target, eventMap) {
-        if (!Array.isArray(eventMap)) eventMap = [eventMap];
-
-        eventMap.forEach(({ name, callback }) => {
-            target.addEventListener(name, callback);
-        });
-
-        return this;
-    }
-}
-
-export default Dom;
+export default dom;
