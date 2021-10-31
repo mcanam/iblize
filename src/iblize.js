@@ -1,19 +1,19 @@
-import "./iblize.scss";
-
 import Prism from "prismjs";
-import Dom from "./utils/dom";
+import dom from "./utils/dom";
 import History from "./history";
 import Loader from "./loader";
 
 class Iblize {
     constructor(container = "", options = {}) {
+        this.version = __VERSION__;
+        
         this.history = new History(this);
         this.loader = new Loader();
 
         if (container instanceof HTMLElement) {
             this.elementRoot = container;
         } else {
-            this.elementRoot = Dom.select(container);
+            this.elementRoot = dom.select(container);
         }
 
         if (!this.elementRoot) {
@@ -47,32 +47,32 @@ class Iblize {
     }
 
     createEditorElement() {
-        this.elementWrapper = Dom.create("div", {
+        this.elementWrapper = dom.create("div", {
             parent: this.elementRoot,
             className: `iblize ${this.options.theme}`
         });
 
-        this.elementLinenumber = Dom.create("div", {
+        this.elementLinenumber = dom.create("div", {
             parent: this.elementWrapper,
             className: "iblize_linenumber"
         });
 
-        this.elementContent = Dom.create("div", {
+        this.elementContent = dom.create("div", {
             parent: this.elementWrapper,
             className: "iblize_content"
         });
 
-        this.elementPre = Dom.create("pre", {
+        this.elementPre = dom.create("pre", {
             parent: this.elementContent,
             className: "iblize_pre"
         });
 
-        this.elementCode = Dom.create("code", {
+        this.elementCode = dom.create("code", {
             parent: this.elementPre,
             className: "iblize_code"
         });
 
-        this.elementTextarea = Dom.create("textarea", {
+        this.elementTextarea = dom.create("textarea", {
             parent: this.elementContent,
             className: "iblize_textarea",
             attr: {
@@ -85,7 +85,7 @@ class Iblize {
     }
 
     attachTextareaEvent() {
-        Dom.addEvent(this.elementTextarea, [
+        dom.addEvent(this.elementTextarea, [
             {
                 name: "input",
                 callback: this.handleInput.bind(this)
@@ -111,12 +111,12 @@ class Iblize {
             scrollLeft: left
         } = this.elementTextarea;
 
-        Dom.addStyle(this.elementLinenumber, {
+        dom.addStyle(this.elementLinenumber, {
             height: height + "px",
             transform: `translateY(${top * -1}px)`
         });
 
-        Dom.addStyle(this.elementPre, {
+        dom.addStyle(this.elementPre, {
             width: width + "px",
             height: height + "px",
             transform: `translate(${left * -1}px, ${top * -1}px)`
