@@ -1,31 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
+      <head>
+            <title>Iblize Preview</title>
+            <meta charset="UTF-8" />
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <style>* {padding: 0; margin: 0; box-sizing: border-box} html {font: 14px sans-serif; color: #33444d} body {width: 100%; height: 100vh; padding: 20px; display: flex; flex-direction: column} button,select {font: inherit; border: none; outline: none; background: none; cursor: pointer; user-select: none} .toolbar {width: fit-content; max-width: 100%; padding: 5px; margin-top: 20px; display: flex; align-items: center; background-color: #222639; overflow: auto} .toolbar-btn {color: hsl(230, 25%, 80%); padding: 8px 10px; margin: 5px; background-color: transparent; transition: 0.2s} .toolbar-btn:hover {background-color: #2a2f46} .editor {width: 100%; height: 400px}</style>
+      </head>
 
-    <head>
-        <title>Iblize Preview</title>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <style>
-            #editor { width: 100%; height: 400px }
-        </style>
-    </head>
+      <body>
+            <div class="editor"><!--console.log("Hello World");--></div>
 
-    <body>
-        <div id="editor"><!--console.log("Hello World");--></div>
+            <div class="toolbar">
+                  <select class="toolbar-btn" onchange="setLineNumber(event)">
+                        <option value="true">lineNumber</option>
+                        <option value="true">true</option>
+                        <option value="false">false</option>
+                  </select>
 
-        <script src="dist/iblize.js"></script>
-        <script>
-            const iblize = new Iblize("#editor", {
-                language: "js",
-                languagesPath: "dist/languages/",
-                lineNumber: true,
-                readOnly: false,
-                tabSize: 2,
-                theme: "iblize-dark",
-                themesPath: "dist/themes/"
-            });
-        </script>
-    </body>
+                  <select class="toolbar-btn" onchange="setReadOnly(event)">
+                        <option value="false">readOnly</option>
+                        <option value="true">true</option>
+                        <option value="false">false</option>
+                  </select>
 
+                  <select class="toolbar-btn a" onchange="setTheme(event)">
+                        <option value="iblize-dark">theme</option>
+                  </select>
+
+                  <select class="toolbar-btn" onchange="setTabSize(event)">
+                        <option value="2">tabSize</option>
+                        <option value="2">2</option>
+                        <option value="4">4</option>
+                        <option value="6">6</option>
+                        <option value="8">8</option>
+                  </select>
+                  
+                  <button class="toolbar-btn" onclick="iblize.insertTab()">tab</button>
+                  <button class="toolbar-btn" onclick="iblize.undo()">undo</button>
+                  <button class="toolbar-btn" onclick="iblize.redo()">redo</button>
+            </div>
+
+            <script src=".dev-build/iblize.js"></script>
+            <script>
+                  const iblize = new Iblize(".editor", {
+                        language: "js",
+                        languagesPath: "dist/languages/",
+                        lineNumber: true,
+                        readOnly: false,
+                        tabSize: 2,
+                        theme: "iblize-dark",
+                        themesPath: "dist/themes/"
+                  });
+
+                  fetch("themes/themes.json")
+                  .then(resp => resp.json())
+                  .then(data => {
+                        const element = document.querySelector(".toolbar-btn.a");
+                        const themes = data;
+
+                        themes.forEach(theme => {
+                              element.insertAdjacentHTML("beforeend", `<option value="${theme}">${theme}</option>`);
+                        });
+                  });
+
+                  function setLineNumber(e) {
+                        const value = e.target.value;
+                        iblize.setOptions({ lineNumber: value == "false" ? false : true }); 
+                  }
+
+                  function setReadOnly(e) {
+                        const value = e.target.value;
+                        iblize.setOptions({ readOnly: value == "true" ? true : false }); 
+                  }
+
+                  function setTheme(e) {
+                        const value = e.target.value;
+                        iblize.setOptions({ theme: value }); 
+                  }
+
+                  function setTabSize(e) {
+                        const value = e.target.value;
+                        iblize.setOptions({ tabSize: Number(value) }); 
+                  }
+            </script>
+      </body>
 </html>
