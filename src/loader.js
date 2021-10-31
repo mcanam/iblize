@@ -1,6 +1,6 @@
 // inspired by prism autoloader plugin
 
-import Dom from "./utils/dom";
+import dom from "./utils/dom";
 import languages from "./utils/languages";
 
 class Loader {
@@ -44,7 +44,7 @@ class Loader {
         createScript(name, callback);
 
         function createScript(name, callback = () => {}) {
-            const script = Dom.create("script", {
+            const script = dom.create("script", {
                 parent: document.body,
                 src: path + name + ".js",
                 onload: () => { script.remove(); callback() }
@@ -59,13 +59,13 @@ class Loader {
 
         if (this.themes.includes(name)) {
             // if theme is exist, just update path/url.
-            const link = Dom.select(`link[theme="${name}"]`);
+            const link = dom.select(`link[theme="${name}"]`);
             return link.href = path + name + ".css";
         }
 
-        const ref = Dom.select("#iblize_style");
+        const ref = document.head;
 
-        ref.after(Dom.create("link", {
+        ref.insertAdjacentElement("afterbegin", dom.create("link", {
             rel: "stylesheet",
             href: path + name + ".css",
             attr: { theme: name }
