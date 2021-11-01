@@ -8,11 +8,11 @@ Thank you so much 😚
 
 ## Report Bug 🐛
 
-If you find a bug or think of an improvement, feel free to [open an issue]().
+If you find a bug or think of an improvement, feel free to [open an issue](https://github.com/mcanam/iblize/issues).
 
 ## Feature Request 🌱
 
-Feature requests are always welcome. If you are thinking of contributing a feature, please [open an issue]() first to discuss it.
+Feature requests are always welcome. If you are thinking of contributing a feature, please [open an issue](https://github.com/mcanam/iblize/issues) first to discuss it.
 
 ## Improve Docs 📝
 
