@@ -1,7 +1,7 @@
 // inspired by prism autoloader plugin
 
-import dom from "./utils/dom";
-import languages from "./utils/languages";
+import dom from "../utils/dom";
+import languages from "../utils/languages";
 
 class Loader {
     constructor() {
@@ -63,9 +63,9 @@ class Loader {
             return link.href = path + name + ".css";
         }
 
-        const ref = document.head;
+        const ref = dom.select("#iblize-base");
 
-        ref.insertAdjacentElement("afterbegin", dom.create("link", {
+        ref.after(dom.create("link", {
             rel: "stylesheet",
             href: path + name + ".css",
             attr: { theme: name }
