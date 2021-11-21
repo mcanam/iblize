@@ -1,6 +1,6 @@
 
 /*!
- * iblize v2.0.2
+ * iblize v2.0.3
  * Simple Javascript Code Editor Library
  * https://mcanam.github.io/iblize
  * MIT license by mcanam
@@ -2304,8 +2304,8 @@
           return link.href = path + name + ".css";
         }
 
-        var ref = document.head;
-        ref.insertAdjacentElement("afterbegin", dom.create("link", {
+        var ref = dom.select("#iblize-base");
+        ref.after(dom.create("link", {
           rel: "stylesheet",
           href: path + name + ".css",
           attr: {
@@ -2319,6 +2319,11 @@
     return Loader;
   }();
 
+  var e=[],t=[];function n(n,r){if(n&&"undefined"!=typeof document){var a,s=!0===r.prepend?"prepend":"append",d=!0===r.singleTag,i="string"==typeof r.container?document.querySelector(r.container):document.getElementsByTagName("head")[0];if(d){var u=e.indexOf(i);-1===u&&(u=e.push(i)-1,t[u]={}),a=t[u]&&t[u][s]?t[u][s]:t[u][s]=c();}else a=c();65279===n.charCodeAt(0)&&(n=n.substring(1)),a.styleSheet?a.styleSheet.cssText+=n:a.appendChild(document.createTextNode(n));}function c(){var e=document.createElement("style");if(e.setAttribute("type","text/css"),r.attributes)for(var t=Object.keys(r.attributes),n=0;n<t.length;n++)e.setAttribute(t[n],r.attributes[t[n]]);var a="prepend"===s?"afterbegin":"beforeend";return i.insertAdjacentElement(a,e),e}}
+
+  var css = ".iblize{font:14px/1.75 Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;color:#3d525c;width:100%;height:100%;display:flex;position:relative;overflow:hidden}.iblize,.iblize *{box-sizing:border-box}.iblize *{font:inherit}.iblize_linenumber{display:flex;flex-direction:column}.iblize_linenumber_child{text-align:right;width:100%}.iblize_content{flex-grow:1;height:100%;position:relative;overflow:hidden}.iblize_pre,.iblize_textarea{width:100%;height:100%;padding:0;margin:0}.iblize_textarea{color:transparent;caret-color:#3d525c;white-space:pre;border:none;outline:none;background-color:transparent;position:relative;z-index:2;resize:none}.iblize_pre{position:absolute;top:0;left:0;pointer-events:none}";
+  n(css,{"prepend":true,"attributes":{"id":"iblize-base"}});
+
   var Iblize = /*#__PURE__*/function () {
     function Iblize() {
       var container = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
@@ -2326,7 +2331,7 @@
 
       _classCallCheck(this, Iblize);
 
-      this.version = "2.0.2";
+      this.version = "2.0.3";
       this.history = new History(this);
       this.loader = new Loader();
 
