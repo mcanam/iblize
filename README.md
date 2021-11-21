@@ -27,7 +27,7 @@
 you can directly use cdn
 
 ```html
-<script src="https://unpkg.com/iblize/dist/iblize.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/iblize/dist/iblize.min.js"></script>
 ```
 
 or install from npm
@@ -35,8 +35,6 @@ or install from npm
 ``` bash
 $ npm install iblize --save
 ```
-
-or download manually from [here](https://github.com/mcanam/iblize/archive/refs/tags/v2.0.1.zip)
 
 ### 2. Create editor container
 
@@ -171,6 +169,10 @@ path to **themes** folder. You can find the folder in the **dist** folder.
 # API Reference
 
 documentation move [here](https://mcanam.gitbook.io/iblize-docs/api-reference)
+
+# Contributing
+
+[CONTRIBUTING.md](https://github.com/mcanam/iblize/blob/master/.github/CONTRIBUTING.md)
 
 # Dependency
 
