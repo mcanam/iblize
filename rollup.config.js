@@ -1,12 +1,8 @@
-import resolve from "@rollup/plugin-node-resolve";
-import commonjs from "@rollup/plugin-commonjs";
-import replace from "@rollup/plugin-replace";
-import styles from "rollup-plugin-styles";
-import serve from "rollup-plugin-serve";
-import livereload from "rollup-plugin-livereload";
-import { terser } from "rollup-plugin-terser";
-import { babel } from "@rollup/plugin-babel";
-import pkg from "./package.json";
+import terser from '@rollup/plugin-terser';
+import fs from 'node:fs';
+
+let pkg = fs.readFileSync('./package.json', 'utf-8');
+    pkg = JSON.parse(pkg);
 
 const header = `
 /*!
@@ -17,68 +13,25 @@ const header = `
  */
 `;
 
-const commonPlugins = [
-    resolve(),
-    commonjs(),
-    styles({
-        mode: [
-            "inject", 
-            { prepend: true, attributes: { id: "iblize-base" } }
-        ],
-        minimize: true
-    }),
-    replace({
-        preventAssignment: true,
-        __VERSION__: `"${pkg.version}"`
-    })
-];
-
-const dev = {
-    input: "src/index.js",
-    output: {
-        file: ".dev-build/iblize.js",
-        format: "umd",
-        name: "Iblize",
-        sourcemap: true
-    },
-    plugins: [
-        ...commonPlugins,
-        serve({
-            port: 4321,
-            open: true
-        }),
-        livereload()
-    ]
+const config = properties => {
+      return {
+            format: 'umd',
+            banner: header,
+            name: 'Iblize',
+            ...properties
+      };
 };
 
-const prod = {
-    input: "src/index.js",
-    output: [
-        {
-            file: "dist/iblize.js",
-            format: "umd",
-            name: "Iblize",
-            banner: header,
-            sourcemap: true
-        },
-        {
-            file: "dist/iblize.min.js",
-            format: "umd",
-            name: "Iblize",
-            banner: header,
-            sourcemap: true,
-            plugins: [terser()]
-        }
-    ],
-    plugins: [
-        ...commonPlugins,
-        babel({
-            babelHelpers: "bundled",
-            exclude: "node_modules/**",
-            presets: ["@babel/preset-env"]
-        })
-    ]
+export default {
+      input: 'src/iblize.js',
+      output: [
+            config({
+                  file: 'dist/iblize.js'
+            }),
+            config({
+                  file: 'dist/iblize.min.js',
+                  sourcemap: true,
+                  plugins: [terser()]
+            })
+      ]
 };
-
-let config = process.env.MODE == "prod" ? prod : dev;
-export default config;
